@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pixelGame.css">
+    <title>Pixel Odyssey - Fullscreen Demo</title>
+</head>
+
+<body>
+
+    <main class="game-shell">
+        <section class="game-viewport" aria-label="Game screen">
+            <div class="game-ui" aria-label="HUD">
+                <div class="hud-left">
+                    <div class="hud-title">NOVA</div>
+                    <div class="hud-bar">
+                        <span class="hud-label">HP</span>
+                        <div class="bar-outer">
+                            <div class="bar-inner hp" style="width: 82%"></div>
+                        </div>
+                        <span class="hud-value">82/100</span>
+                    </div>
+                    <div class="hud-bar">
+                        <span class="hud-label">MP</span>
+                        <div class="bar-outer">
+                            <div class="bar-inner mp" style="width: 48%"></div>
+                        </div>
+                        <span class="hud-value">48/100</span>
+                    </div>
+                    <div class="hud-bar">
+                        <span class="hud-label">XP</span>
+                        <div class="bar-outer">
+                            <div class="bar-inner xp" style="width: 10%"></div>
+                        </div>
+                        <span class="hud-value">10/100</span>
+                    </div>
+                    <div class="hud-bar">
+                        <span class="hud-label">ST</span>
+                        <div class="bar-outer">
+                            <div class="bar-inner st" style="width: 100%"></div>
+                        </div>
+                        <span class="hud-value">100/100</span>
+                    </div>
+                </div>
+                <div class="hud-right">
+                    <div class="mini-pill">LV 07</div>
+                    <div class="mini-pill">AREA: <span class="area-value">NOX GROVE</span></div>
+                    <div class="mini-pill">COINS: <span class="coins-value">0</span></div>
+                </div>
+            </div>
+
+            <div class="map-layer">
+                <div class="map-grid" aria-hidden="true"></div>
+                <div class="city-layer" aria-hidden="true"></div>
+            </div>
+
+            <div class="weather-layer rain" aria-hidden="true"></div>
+            <div class="weather-layer fog" aria-hidden="true"></div>
+            <div class="day-night" aria-hidden="true"></div>
+
+            <div class="player face-down idle">
+                <div class="sprite" aria-hidden="true"></div>
+                <span class="nameplate">NOVA</span>
+            </div>
+
+            <div class="enemy enemy-1" aria-label="Enemy">
+                <div class="enemy-sprite" aria-hidden="true"></div>
+                <div class="enemy-hp" aria-hidden="true"><span></span></div>
+            </div>
+            <div class="enemy enemy-2" aria-label="Enemy">
+                <div class="enemy-sprite" aria-hidden="true"></div>
+                <div class="enemy-hp" aria-hidden="true"><span></span></div>
+            </div>
+            <div class="enemy enemy-3" aria-label="Enemy">
+                <div class="enemy-sprite" aria-hidden="true"></div>
+                <div class="enemy-hp" aria-hidden="true"><span></span></div>
+            </div>
+
+            <div class="npc vendor" aria-label="Vendor">
+                <div class="npc-sprite" aria-hidden="true"></div>
+                <span class="npc-label">Shop</span>
+            </div>
+
+            <div class="boss-telegraph" aria-hidden="true"></div>
+
+            <div class="hotbar" aria-label="Inventory">
+                <div class="slot" data-slot="1">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>1</span>
+                </div>
+                <div class="slot" data-slot="2">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>2</span>
+                </div>
+                <div class="slot" data-slot="3">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>3</span>
+                </div>
+                <div class="slot" data-slot="4">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>4</span>
+                </div>
+                <div class="slot" data-slot="5">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>5</span>
+                </div>
+                <div class="slot" data-slot="6">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>6</span>
+                </div>
+                <div class="slot" data-slot="7">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>7</span>
+                </div>
+                <div class="slot" data-slot="8">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>8</span>
+                </div>
+                <div class="slot" data-slot="9">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>9</span>
+                </div>
+                <div class="slot" data-slot="10">
+                    <span class="item">Sword</span>
+                    <span class="cooldown" aria-hidden="true"></span>
+                    <span>0</span>
+                </div>
+            </div>
+
+            <div class="minimap" aria-label="Mini map">
+                <canvas id="minimap" width="160" height="160"></canvas>
+            </div>
+
+            <div class="quest-tracker" aria-label="Quest tracker">
+                <div class="quest-title">Quest</div>
+                <div class="quest-text">
+                    Defeat enemies
+                    <span class="quest-progress">0/3</span>
+                </div>
+            </div>
+
+            <div class="pause-overlay" aria-hidden="true">
+                <div class="pause-card">
+                    <h3>Paused</h3>
+                    <p>Press P to resume</p>
+                </div>
+            </div>
+
+            <div class="shop-overlay" aria-hidden="true">
+                <div class="shop-card">
+                    <h3>Vendor</h3>
+                    <p>Buy Potion (10 coins) - Press B</p>
+                    <p>Close - Press E</p>
+                </div>
+            </div>
+
+            <div class="dialogue-toast" aria-hidden="true">
+                <span class="dialogue-text">...</span>
+            </div>
+        </section>
+
+    </main>
+    <script src="game.js"></script>
+</body>
+
+</html>

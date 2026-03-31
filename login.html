@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="authStyle.css">
+    <title>Dark Odyssey Login</title>
+</head>
+
+<body>
+    <div class="auth-orb orb-a" aria-hidden="true"></div>
+    <div class="auth-orb orb-b" aria-hidden="true"></div>
+    <div class="auth-orb orb-c" aria-hidden="true"></div>
+
+    <div class="corner-deco corner-tl">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2 L2 30 L10 30 L10 10 L30 10 L30 2 Z" fill="none" stroke="rgba(180,80,80,0.8)"
+                stroke-width="2" />
+            <rect x="2" y="2" width="4" height="4" fill="rgba(180,80,80,0.9)" />
+        </svg>
+    </div>
+    <div class="corner-deco corner-tr">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2 L2 30 L10 30 L10 10 L30 10 L30 2 Z" fill="none" stroke="rgba(180,80,80,0.8)"
+                stroke-width="2" />
+            <rect x="2" y="2" width="4" height="4" fill="rgba(180,80,80,0.9)" />
+        </svg>
+    </div>
+    <div class="corner-deco corner-bl">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2 L2 30 L10 30 L10 10 L30 10 L30 2 Z" fill="none" stroke="rgba(180,80,80,0.8)"
+                stroke-width="2" />
+            <rect x="2" y="2" width="4" height="4" fill="rgba(180,80,80,0.9)" />
+        </svg>
+    </div>
+    <div class="corner-deco corner-br">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2 L2 30 L10 30 L10 10 L30 10 L30 2 Z" fill="none" stroke="rgba(180,80,80,0.8)"
+                stroke-width="2" />
+            <rect x="2" y="2" width="4" height="4" fill="rgba(180,80,80,0.9)" />
+        </svg>
+    </div>
+
+    <div class="auth-shell">
+        <header class="topbar">
+            <a href="indexPixel.html" class="brand">
+                <img src="asset/icon.png" alt="Dark Odyssey icon">
+                <span>DARK ODYSSEY</span>
+            </a>
+            <a href="indexPixel.html" class="back-home">Back to Home</a>
+        </header>
+
+        <div class="scroll-progress" aria-hidden="true">
+            <span class="scroll-progress-bar"></span>
+        </div>
+
+        <main class="auth-main">
+            <section class="auth-copy">
+                <span class="auth-badge">RETURN TO THE REALM</span>
+                <h1>Step back into the shadows and continue the adventure.</h1>
+                <p>Log in to track your progress, revisit your last checkpoint, and return to the lands you left behind.</p>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <strong>Saved Journey</strong>
+                        Pick up where your last run ended and keep your momentum.
+                    </div>
+                    <div class="feature-item">
+                        <strong>Hero Progress</strong>
+                        Keep your level path, victories, and rare discoveries in one place.
+                    </div>
+                    <div class="feature-item">
+                        <strong>Fast Access</strong>
+                        Move from home screen to gameplay with the same dark pixel atmosphere.
+                    </div>
+                </div>
+            </section>
+
+            <section class="auth-card">
+                <h2>Login</h2>
+                <p class="card-sub">Enter your account details to return to Dark Odyssey.</p>
+
+                <form class="auth-form">
+                    <div class="input-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="hero@email.com"
+                            data-tip="Your email reconnects you to your saved journey.">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-wrap">
+                            <input type="password" id="login-password" placeholder="Enter your password"
+                                data-tip="Use the password tied to your hero profile.">
+                            <button type="button" class="toggle-password" data-target="login-password">Show</button>
+                        </div>
+                    </div>
+
+                    <p class="live-tip" data-live-tip>Use the form below to jump back into the realm.</p>
+
+                    <div class="auth-row">
+                        <label><input type="checkbox"> Remember me</label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="primary-btn">Enter the Realm</button>
+                </form>
+
+                <p class="secondary-note">Need an account? <a href="signup.html" class="switch-link">Create one here</a>.</p>
+            </section>
+        </main>
+
+        <section class="auth-extra-grid" aria-label="Extra details">
+            <article class="auth-extra-card">
+                <span class="extra-kicker">NIGHT WATCH</span>
+                <h3>Fast Return</h3>
+                <p>Everything stays in reach with a sticky header, quick form actions, and smooth scroll progress as you move through the page.</p>
+            </article>
+            <article class="auth-extra-card">
+                <span class="extra-kicker">REALM FEEL</span>
+                <h3>Animated Atmosphere</h3>
+                <p>Floating glow orbs, card lift effects, and active buttons keep the login page feeling alive without losing the dark fantasy style.</p>
+            </article>
+            <article class="auth-extra-card">
+                <span class="extra-kicker">PLAYER FLOW</span>
+                <h3>Responsive Use</h3>
+                <p>The layout fills the screen on desktop, stacks cleanly on mobile, and stays scrollable when the content grows.</p>
+            </article>
+        </section>
+    </div>
+
+    <div class="auth-toast" aria-live="polite"></div>
+    <script src="auth.js"></script>
+</body>
+
+</html>
