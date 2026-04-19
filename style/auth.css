@@ -73,17 +73,11 @@ body {
 .brand-mark {
   width: 42px;
   height: 42px;
+  display: block;
+  object-fit: cover;
   border-radius: 14px;
-  display: grid;
-  place-items: center;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.14), transparent 55%),
-    linear-gradient(180deg, rgba(53, 208, 255, 0.22), rgba(255, 207, 122, 0.12));
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
-  font-family: "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 14px;
-  letter-spacing: 0.08em;
 }
 
 .brand span:last-child {

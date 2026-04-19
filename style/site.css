@@ -110,11 +110,12 @@ h1, h2, h3 { text-wrap: balance; }
 }
 
 .brand-mark {
-  font-family: "Press Start 2P", ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.92);
-  text-shadow: 0 0 14px rgba(53, 208, 255, 0.28);
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
+  box-shadow: 0 0 14px rgba(53, 208, 255, 0.18);
 }
 
 .icon-title > span {
