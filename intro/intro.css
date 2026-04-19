@@ -1,0 +1,257 @@
+@font-face {
+  font-family: "SuperMarioNES";
+  src: url("../buttons/Super Mario Bros. NES.ttf") format("truetype");
+}
+
+:root {
+  --bg-0: #05060b;
+  --bg-1: #111523;
+  --panel: rgba(8, 10, 18, 0.86);
+  --panel-edge: rgba(193, 201, 226, 0.28);
+  --text-main: #f7f7fb;
+  --text-soft: #b7bfd7;
+  --accent: #ffd78e;
+  --accent-2: #90d8ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top, rgba(88, 96, 166, 0.24), transparent 26%),
+    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%);
+  overflow: hidden;
+}
+
+.intro-app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.intro-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.intro-backdrop {
+  position: absolute;
+  inset: 0;
+  background: #04050a;
+}
+
+.intro-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3, 5, 10, 0.05) 0%, rgba(3, 5, 10, 0.35) 45%, rgba(3, 5, 10, 0.88) 100%);
+  pointer-events: none;
+}
+
+.scene-image,
+.scene-title-screen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scene-image {
+  object-fit: cover;
+  filter: saturate(1.02) contrast(1.02);
+}
+
+.scene-title-screen {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 26%),
+    linear-gradient(180deg, #08090f 0%, #010204 100%);
+  text-align: center;
+}
+
+.scene-title-screen[hidden] {
+  display: none;
+}
+
+.title-kicker {
+  margin: 0;
+  color: var(--accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.scene-title-screen h1 {
+  margin: 0;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: clamp(2rem, 6vw, 5rem);
+  line-height: 1.12;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 24px rgba(136, 168, 255, 0.24);
+}
+
+.title-copy {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: clamp(1rem, 2vw, 1.35rem);
+}
+
+.start-link {
+  margin-top: 10px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffd78e 0%, #e8a84f 100%);
+  color: #15110b;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.start-link[hidden] {
+  display: none;
+}
+
+.scene-meta {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: min(980px, calc(100vw - 32px));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.scene-counter,
+.skip-button {
+  border: 1px solid rgba(193, 201, 226, 0.28);
+  background: rgba(8, 10, 18, 0.6);
+  color: var(--text-main);
+  backdrop-filter: blur(10px);
+}
+
+.scene-counter {
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skip-button {
+  padding: 10px 16px;
+  border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.subtitle-panel {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: min(980px, calc(100vw - 32px));
+  min-height: 146px;
+  padding: 20px 24px 18px;
+  border: 1px solid var(--panel-edge);
+  border-radius: 24px;
+  background: var(--panel);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.42);
+}
+
+.subtitle-speaker {
+  margin: 0 0 8px;
+  color: var(--accent-2);
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.subtitle-title {
+  margin: 0 0 12px;
+  font-size: clamp(1.25rem, 2.6vw, 1.8rem);
+}
+
+.subtitle-text {
+  margin: 0;
+  min-height: 54px;
+  color: #f4f5fb;
+  font-size: clamp(1rem, 1.8vw, 1.22rem);
+  line-height: 1.65;
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+}
+
+.subtitle-text.is-visible {
+  animation: subtitle-in 480ms ease forwards;
+}
+
+.subtitle-text.is-hiding {
+  animation: subtitle-out 380ms ease forwards;
+}
+
+@keyframes subtitle-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes subtitle-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+    filter: blur(5px);
+  }
+}
+
+@media (max-width: 720px) {
+  .scene-meta {
+    top: 12px;
+    width: calc(100vw - 16px);
+  }
+
+  .subtitle-panel {
+    bottom: 12px;
+    width: calc(100vw - 16px);
+    min-height: 140px;
+    padding: 18px 16px 16px;
+    border-radius: 20px;
+  }
+
+  .subtitle-text {
+    min-height: 70px;
+  }
+}

@@ -1,0 +1,227 @@
+/* Shared pause menu styling (stages + lobby) */
+
+.canvas-menu-button {
+  display: block;
+  position: absolute;
+  top: 16px;
+  z-index: 30;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  background: url("../buttons/Pixel Art Buttons.png") 0 -64px / 512px 320px no-repeat;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+  cursor: pointer;
+}
+
+.canvas-menu-button-right {
+  left: auto;
+  right: 16px;
+}
+
+.canvas-menu-button:active {
+  transform: translateY(1px);
+  filter: brightness(0.92) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+}
+
+.pause-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.pause-overlay[hidden] {
+  display: none;
+}
+
+.pause-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.pause-panel {
+  position: relative;
+  z-index: 1;
+  width: min(420px, calc(100vw - 40px));
+  min-height: min(620px, calc(100vh - 40px));
+  padding: 44px 36px 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  border: 4px solid #5f6067;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(8, 8, 12, 0.96) 0%, rgba(2, 2, 4, 0.98) 100%);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 2px rgba(175, 175, 175, 0.15);
+  overflow: hidden;
+}
+
+.pause-ornament {
+  display: none;
+}
+
+.pause-title {
+  margin-top: 6px;
+  padding: 12px 24px;
+  border: 3px solid #717279;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #48484d 0%, #2e2e33 100%);
+  color: #f0f0f0;
+  font-family: "SuperMarioNES", "Lucida Console", monospace;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 2px 2px 0 #131316;
+  letter-spacing: 0.04em;
+}
+
+.pause-main,
+.pause-subpanel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.pause-subpanel[hidden] {
+  display: none;
+}
+
+.pause-action,
+.pause-secondary {
+  position: relative;
+  width: min(250px, 100%);
+  min-height: 80px;
+  padding: 18px 20px;
+  border: 4px solid #76767d;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(74, 74, 79, 0.96) 0%, rgba(41, 41, 45, 0.98) 100%);
+  color: #f2f2f2;
+  font-family: "SuperMarioNES", "Lucida Console", monospace;
+  font-size: 24px;
+  line-height: 1;
+  text-transform: lowercase;
+  text-shadow: 2px 2px 0 #131316;
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+.pause-action:hover,
+.pause-secondary:hover,
+.pause-action:focus-visible,
+.pause-secondary:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.pause-action:active,
+.pause-secondary:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+.pause-copy {
+  max-width: 270px;
+  color: #e6e6e8;
+  font-family: "SuperMarioNES", "Lucida Console", monospace;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.pause-confirm-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.knob-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.volume-knob {
+  --knob-angle: 135deg;
+  position: relative;
+  width: 124px;
+  height: 124px;
+  border: 4px solid #75757c;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #72727a 0%, #4a4a50 35%, #232328 100%);
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 255, 255, 0.08),
+    0 12px 24px rgba(0, 0, 0, 0.35);
+  cursor: grab;
+}
+
+.volume-knob:active {
+  cursor: grabbing;
+}
+
+.volume-knob-face {
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  background: radial-gradient(circle at 30% 30%, #5d5d64 0%, #232328 74%);
+}
+
+.volume-knob-indicator {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 40px;
+  margin-left: -5px;
+  margin-top: -44px;
+  border-radius: 999px;
+  background: #ededee;
+  box-shadow: 0 0 0 2px #151518;
+  transform-origin: 50% 44px;
+  transform: rotate(var(--knob-angle));
+}
+
+body.is-paused .canvas-menu-button {
+  filter: brightness(1.08) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
+@media (max-width: 768px) {
+  .canvas-menu-button {
+    top: 12px;
+    left: auto;
+    right: 12px;
+  }
+
+  .pause-panel {
+    min-height: min(560px, calc(100vh - 28px));
+    padding: 32px 22px 26px;
+  }
+
+  .pause-title {
+    font-size: 18px;
+  }
+
+  .pause-action,
+  .pause-secondary {
+    min-height: 72px;
+    font-size: 20px;
+  }
+
+  .pause-copy {
+    font-size: 15px;
+  }
+}

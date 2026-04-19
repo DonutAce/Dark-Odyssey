@@ -1,0 +1,52 @@
+.device-guard-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(188, 84, 84, 0.22), transparent 26%),
+        radial-gradient(circle at 80% 14%, rgba(102, 116, 214, 0.18), transparent 22%),
+        linear-gradient(180deg, rgba(6, 7, 14, 0.96), rgba(3, 4, 8, 0.98));
+    backdrop-filter: blur(10px);
+}
+
+.device-guard-card {
+    width: min(560px, calc(100vw - 32px));
+    padding: 28px 24px;
+    border: 3px solid rgba(248, 210, 126, 0.7);
+    background: rgba(11, 13, 22, 0.96);
+    box-shadow: 0 24px 72px rgba(0, 0, 0, 0.52);
+    text-align: center;
+    color: #f4f0e8;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+.device-guard-kicker {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #f6d27e;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.device-guard-title {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: clamp(1.3rem, 4vw, 2rem);
+    line-height: 1.3;
+}
+
+.device-guard-copy {
+    margin: 0;
+    color: #d8ddeb;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+body.device-guard-active {
+    overflow: hidden !important;
+}

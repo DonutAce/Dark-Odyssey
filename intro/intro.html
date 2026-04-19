@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Odyssey - Introduction</title>
+  <link rel="stylesheet" href="intro.css">
+  <link rel="stylesheet" href="../style/device-guard.css">
+</head>
+<body>
+  <main class="intro-app">
+    <section class="intro-stage" aria-label="Dark Odyssey introduction">
+      <div class="intro-backdrop">
+        <img id="scene-image" class="scene-image" src="1.png" alt="Scene artwork">
+        <div class="scene-title-screen" id="title-scene" hidden>
+          <p class="title-kicker">Final Scene</p>
+          <h1>DARK ODYSSEY</h1>
+          <p class="title-copy">This is your path. This is your fate.</p>
+          <a id="start-link" class="start-link" href="../lobby/index.html" hidden>Start</a>
+        </div>
+      </div>
+
+      <div class="scene-meta">
+        <span id="scene-counter" class="scene-counter">Scene 1 / 12</span>
+        <button id="skip-button" class="skip-button" type="button">Skip</button>
+      </div>
+
+      <section class="subtitle-panel" aria-live="polite">
+        <p id="speaker-label" class="subtitle-speaker">Narrator</p>
+        <h2 id="scene-title" class="subtitle-title">The World Before</h2>
+        <p id="subtitle-text" class="subtitle-text"></p>
+      </section>
+    </section>
+  </main>
+
+  <script src="../js/device-guard.js"></script>
+  <script type="module" src="intro.js"></script>
+</body>
+</html>

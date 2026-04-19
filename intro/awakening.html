@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Odyssey - Awakening</title>
+  <link rel="stylesheet" href="awakening.css">
+  <link rel="stylesheet" href="../style/device-guard.css">
+</head>
+<body>
+  <main class="awakening-app">
+    <section class="awakening-stage" aria-label="Dark Odyssey awakening dialogue">
+      <div class="awakening-backdrop">
+        <div class="awakening-vignette"></div>
+        <div class="awakening-glow"></div>
+        <div class="awakening-shadow"></div>
+      </div>
+
+      <div class="scene-meta">
+        <span class="scene-kicker">After The Intro</span>
+        <button id="skip-button" class="skip-button" type="button">Skip</button>
+      </div>
+
+      <section class="dialogue-shell">
+        <div class="dialogue-topline">
+          <span id="speaker-name" class="speaker-name">???</span>
+          <span id="line-count" class="line-count">1 / 27</span>
+        </div>
+        <p id="dialogue-text" class="dialogue-text"></p>
+        <div class="dialogue-bottom">
+          <button id="advance-button" class="advance-button" type="button">Continue</button>
+          <span class="dialogue-hint">Click, Space, or Enter</span>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="../js/device-guard.js"></script>
+  <script type="module" src="awakening.js"></script>
+</body>
+</html>

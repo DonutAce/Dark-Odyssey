@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testing Character</title>
+  <link rel="stylesheet" href="style/styles.css">
+  <link rel="stylesheet" href="style/device-guard.css">
+</head>
+<body>
+  <div id="entry-overlay" class="entry-overlay">
+    <div class="entry-card" role="dialog" aria-modal="true" aria-labelledby="entry-title">
+      <p class="entry-kicker">Test Build Notice</p>
+      <h2 id="entry-title">Work In Progress</h2>
+      <p class="entry-copy">This game is still in progress and may encounter many bugs during testing.</p>
+      <p class="entry-copy">Planned release window: April 6 to April 10, 2026.</p>
+      <label class="entry-check" for="entry-acknowledge">
+        <input id="entry-acknowledge" type="checkbox">
+        <span>I understand and want to continue testing.</span>
+      </label>
+      <p id="entry-status" class="entry-status" aria-live="polite">Loading character sheets...</p>
+      <button id="entry-start" class="entry-button" type="button" disabled>Enter Test Build</button>
+    </div>
+  </div>
+
+  <main class="app-shell">
+    <section class="intro-panel panel">
+      <p class="eyebrow">CHARACTERS</p>
+      <h1>Testing Character</h1>
+    </section>
+
+    <section class="controls-grid">
+      <aside class="panel sidebar">
+        <div class="panel-block">
+          <h2>Characters</h2>
+          <div id="character-picker" class="character-picker" aria-label="Character picker"></div>
+        </div>
+
+        <div class="panel-block">
+          <div class="panel-header">
+            <h2>Test Actions</h2>
+            <button id="reset-btn" class="ghost-button" type="button">Reset</button>
+          </div>
+          <div id="action-buttons" class="action-buttons" aria-label="Character actions"></div>
+        </div>
+
+        <div class="panel-block">
+          <h2>Controls</h2>
+          <ul class="control-list">
+            <li><span class="key">A</span> / <span class="key">D</span> or Arrow Keys to move</li>
+            <li><span class="key">Space</span> to jump</li>
+            <li><span class="key">Click</span> or <span class="key">J</span> for attack</li>
+            <li><span class="key">R</span> to reset the test scene</li>
+          </ul>
+        </div>
+      </aside>
+
+      <section class="panel stage-panel">
+        <div id="stage-shell" class="stage-shell">
+          <canvas
+            id="game-canvas"
+            width="960"
+            height="540"
+            aria-label="Character testing stage"
+          ></canvas>
+
+          <div class="stage-hud">
+            <div class="hud-card">
+              <span class="hud-label">Character</span>
+              <strong id="current-character">Loading...</strong>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">Animation</span>
+              <strong id="current-animation">Loading...</strong>
+            </div>
+            <div class="hud-card">
+              <span class="hud-label">Position</span>
+              <strong id="current-position">0, 0</strong>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/device-guard.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

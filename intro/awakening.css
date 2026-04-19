@@ -1,0 +1,241 @@
+@font-face {
+  font-family: "SuperMarioNES";
+  src: url("../buttons/Super Mario Bros. NES.ttf") format("truetype");
+}
+
+:root {
+  --bg-0: #020308;
+  --bg-1: #090d1a;
+  --bg-2: #121831;
+  --panel: rgba(10, 14, 28, 0.9);
+  --panel-edge: rgba(203, 215, 255, 0.18);
+  --text-main: #f5f7ff;
+  --text-soft: #aeb8d8;
+  --name-mystery: #96c9ff;
+  --name-hero: #ffd49c;
+  --accent: #8ba9ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at center, rgba(69, 87, 160, 0.16), transparent 22%),
+    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%);
+}
+
+.awakening-app,
+.awakening-stage {
+  width: 100vw;
+  height: 100vh;
+}
+
+.awakening-stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.awakening-backdrop,
+.awakening-vignette,
+.awakening-glow,
+.awakening-shadow {
+  position: absolute;
+  inset: 0;
+}
+
+.awakening-backdrop {
+  background:
+    radial-gradient(circle at 50% 44%, rgba(116, 155, 255, 0.16), transparent 12%),
+    radial-gradient(circle at 52% 50%, rgba(83, 98, 183, 0.12), transparent 20%),
+    linear-gradient(180deg, #03050c 0%, #050814 46%, #020308 100%);
+}
+
+.awakening-vignette {
+  background:
+    radial-gradient(circle at center, transparent 28%, rgba(0, 0, 0, 0.62) 88%),
+    linear-gradient(180deg, rgba(3, 5, 10, 0.18) 0%, rgba(3, 5, 10, 0.76) 100%);
+}
+
+.awakening-glow {
+  animation: pulse-glow 3.8s ease-in-out infinite;
+  background: radial-gradient(circle at 50% 48%, rgba(140, 184, 255, 0.18), transparent 14%);
+}
+
+.awakening-shadow {
+  background:
+    radial-gradient(circle at 73% 49%, rgba(5, 8, 18, 0.82), transparent 10%),
+    radial-gradient(circle at 28% 58%, rgba(4, 5, 12, 0.75), transparent 12%);
+  animation: drift-shadow 6.4s ease-in-out infinite;
+}
+
+.scene-meta {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: min(980px, calc(100vw - 32px));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.scene-kicker,
+.skip-button {
+  border: 1px solid rgba(203, 215, 255, 0.16);
+  background: rgba(7, 10, 18, 0.52);
+  color: var(--text-main);
+  backdrop-filter: blur(10px);
+}
+
+.scene-kicker {
+  padding: 9px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.skip-button {
+  padding: 10px 16px;
+  border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dialogue-shell {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: min(740px, calc(100vw - 36px));
+  min-height: 138px;
+  padding: 16px 20px 18px;
+  border: 1px solid var(--panel-edge);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(18, 24, 46, 0.94) 0%, rgba(8, 12, 24, 0.94) 100%);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.44);
+}
+
+.dialogue-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.speaker-name {
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: clamp(0.86rem, 2vw, 1.1rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--name-mystery);
+}
+
+.speaker-name.is-hero {
+  color: var(--name-hero);
+}
+
+.line-count {
+  color: var(--text-soft);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+}
+
+.dialogue-text {
+  margin: 0;
+  min-height: 64px;
+  color: var(--text-main);
+  font-size: clamp(0.98rem, 1.75vw, 1.12rem);
+  line-height: 1.58;
+  white-space: pre-line;
+}
+
+.dialogue-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.advance-button {
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #90a8ff 0%, #6078d6 100%);
+  color: #09101d;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.dialogue-hint {
+  color: var(--text-soft);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes drift-shadow {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: translateX(-12px);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .scene-meta {
+    top: 12px;
+    width: calc(100vw - 16px);
+  }
+
+  .dialogue-shell {
+    bottom: 12px;
+    width: calc(100vw - 16px);
+    min-height: 126px;
+    padding: 16px;
+    border-radius: 20px;
+  }
+
+  .dialogue-bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .advance-button {
+    width: 100%;
+  }
+}

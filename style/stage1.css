@@ -1,0 +1,704 @@
+:root {
+  --bg: #04070d;
+  --panel: rgba(7, 11, 20, 0.88);
+  --line: rgba(155, 195, 245, 0.18);
+  --text: #eef5ff;
+  --muted: #b6c6db;
+  --accent: #8ec9f0;
+  --danger: #ffb0a3;
+}
+
+@font-face {
+  font-family: "SuperMarioNES";
+  src: url("../buttons/Super Mario Bros. NES.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 14% 10%, rgba(80, 108, 156, 0.18), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(35, 53, 82, 0.18), transparent 22%),
+    radial-gradient(circle at bottom right, rgba(110, 42, 46, 0.14), transparent 24%),
+    linear-gradient(180deg, #07101b 0%, #03050a 52%, #010203 100%);
+  overflow: hidden;
+}
+
+.shell {
+  width: min(1380px, calc(100vw - 32px));
+  margin: 24px auto;
+  display: grid;
+  gap: 18px;
+}
+
+.shell-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: block;
+}
+
+.hud {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
+}
+
+.panel {
+  padding: 20px 22px;
+  border-radius: 18px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: clamp(30px, 4vw, 46px);
+}
+
+p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 860px;
+  line-height: 1.55;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.meta span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.stage-wrap {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.56);
+}
+
+.canvas-menu-button {
+  display: block;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 30;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  background: url("../buttons/Pixel Art Buttons.png") 0 -64px / 512px 320px no-repeat;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
+.skill-buttons {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 32;
+  display: flex;
+  gap: 14px;
+  pointer-events: none;
+}
+
+.scene-strip {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: grid;
+  gap: 10px;
+  z-index: 32;
+}
+
+.scene-chip {
+  min-width: 220px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
+  background: rgba(6, 8, 18, 0.84);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+
+.scene-chip-bar {
+  min-width: 216px;
+  padding: 8px 10px;
+  border: 2px solid #4a5568;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(34, 40, 56, 0.9) 0%, rgba(15, 19, 31, 0.92) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+
+.scene-chip strong {
+  display: block;
+  margin-top: 8px;
+  color: #f1f6ff;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.meter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 0 7px,
+    rgba(255, 255, 255, 0) 7px 14px
+  );
+}
+.meter-fill {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-right: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.meter-fill-life {
+  background: linear-gradient(90deg, #7a0f28 0%, #b81f45 52%, #e84a63 100%);
+}
+
+.meter-fill-energy {
+  background: linear-gradient(90deg, #0c2f80 0%, #1f56d1 56%, #2dc6f8 100%);
+}
+
+.skill-button {
+  width: 96px;
+  min-height: 108px;
+  padding: 8px 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.skill-icon {
+  width: 72px;
+  height: 72px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.35));
+}
+
+.skill-button[data-skill="q"] .skill-icon {
+  background-image: url("../buttons/q skill.png");
+}
+
+.skill-button[data-skill="e"] .skill-icon {
+  background-image: url("../buttons/e skill.png");
+}
+
+.skill-cooldown {
+  min-width: 72px;
+  min-height: 22px;
+  padding: 4px 6px;
+  border: 2px solid rgba(183, 190, 208, 0.72);
+  border-radius: 999px;
+  background: rgba(8, 11, 20, 0.82);
+  color: #97d8ff;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  text-shadow: 1px 1px 0 #10131d;
+}
+
+.skill-button.is-cooling .skill-cooldown {
+  color: #ffd47d;
+}
+
+.canvas-menu-button:active {
+  transform: translateY(1px);
+  filter: brightness(0.92) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+}
+
+.stage-wrap-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: linear-gradient(180deg, #02040a 0%, #060a13 38%, #020307 100%);
+  image-rendering: pixelated;
+}
+
+.stage-wrap-fullscreen canvas {
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;
+}
+
+.hud {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  border-radius: 16px;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+#zoneName {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+#statusText {
+  color: var(--muted);
+  text-align: right;
+  max-width: 60%;
+}
+
+.pause-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.pause-overlay[hidden] {
+  display: none;
+}
+
+.stage-dialogue-overlay {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 55;
+  width: min(740px, calc(100vw - 36px));
+  pointer-events: none;
+}
+
+.stage-dialogue-overlay[hidden] {
+  display: none;
+}
+
+.stage-dialogue-shell {
+  border: 1px solid rgba(203, 215, 255, 0.18);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(18, 24, 46, 0.94) 0%, rgba(8, 12, 24, 0.94) 100%);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.44);
+  backdrop-filter: blur(16px);
+  padding: 16px 20px 18px;
+}
+
+.stage-dialogue-speaker {
+  color: #f4ca52;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.stage-dialogue-text {
+  color: #f2efe7;
+  font-size: clamp(0.98rem, 1.75vw, 1.12rem);
+  line-height: 1.58;
+  min-height: 64px;
+  white-space: pre-line;
+}
+
+.boss-hud {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 34;
+  width: min(520px, calc(100vw - 140px));
+  text-align: center;
+}
+
+.boss-hud[hidden] {
+  display: none;
+}
+
+.boss-hud-bar {
+  height: 18px;
+  padding: 3px;
+  border: 1px solid rgba(203, 215, 255, 0.18);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(18, 24, 46, 0.94) 0%, rgba(8, 12, 24, 0.94) 100%);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.boss-hud-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #d6435d 0%, #ff9f62 100%);
+}
+
+.boss-hud-name {
+  margin-top: 8px;
+  color: #f2efe7;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: clamp(0.76rem, 1.35vw, 0.95rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}.pause-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.pause-panel {
+  position: relative;
+  z-index: 1;
+  width: min(420px, calc(100vw - 40px));
+  min-height: min(620px, calc(100vh - 40px));
+  padding: 44px 36px 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  border: 4px solid #5f6067;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(8, 8, 12, 0.96) 0%, rgba(2, 2, 4, 0.98) 100%);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 2px rgba(175, 175, 175, 0.15);
+  overflow: hidden;
+}
+
+.pause-ornament {
+  display: none;
+}
+
+.pause-ornament-top {
+  margin-top: 20px;
+}
+
+.pause-ornament-bottom {
+  margin-top: auto;
+  transform: scaleY(-1);
+}
+
+.pause-title {
+  margin-top: 6px;
+  padding: 12px 24px;
+  border: 3px solid #717279;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #48484d 0%, #2e2e33 100%);
+  color: #f0f0f0;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 2px 2px 0 #131316;
+  letter-spacing: 0.04em;
+}
+
+.pause-main,
+.pause-subpanel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.pause-subpanel[hidden] {
+  display: none;
+}
+
+.pause-action,
+.pause-secondary {
+  position: relative;
+  width: min(250px, 100%);
+  min-height: 80px;
+  padding: 18px 20px;
+  border: 4px solid #76767d;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(74, 74, 79, 0.96) 0%, rgba(41, 41, 45, 0.98) 100%);
+  color: #f2f2f2;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  text-transform: lowercase;
+  text-shadow: 2px 2px 0 #131316;
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+.pause-action:hover,
+.pause-secondary:hover,
+.pause-action:focus-visible,
+.pause-secondary:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.pause-action:active,
+.pause-secondary:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+.pause-copy {
+  max-width: 270px;
+  color: #e6e6e8;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  text-shadow: 2px 2px 0 #131316;
+}
+
+.pause-confirm-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.knob-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.volume-knob {
+  --knob-angle: 135deg;
+  position: relative;
+  width: 124px;
+  height: 124px;
+  border: 4px solid #75757c;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #72727a 0%, #4a4a50 35%, #232328 100%);
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 255, 255, 0.08),
+    0 12px 24px rgba(0, 0, 0, 0.35);
+  cursor: grab;
+}
+
+.volume-knob:active {
+  cursor: grabbing;
+}
+
+.volume-knob-face {
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  background: radial-gradient(circle at 30% 30%, #5d5d64 0%, #232328 74%);
+}
+
+.volume-knob-indicator {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 40px;
+  margin-left: -5px;
+  margin-top: -44px;
+  border-radius: 999px;
+  background: #ededee;
+  box-shadow: 0 0 0 2px #151518;
+  transform: rotate(var(--knob-angle));
+  transform-origin: 50% 48px;
+}
+
+.canvas-menu-button {
+  z-index: 60;
+}
+
+body.is-paused .canvas-menu-button {
+  filter: brightness(1.08) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
+@media (max-width: 900px) {
+  .shell {
+    width: min(100vw, calc(100vw - 20px));
+    margin: 10px auto 20px;
+  }
+
+  .hud {
+    position: static;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    flex-direction: column;
+  }
+
+  #statusText {
+    max-width: none;
+    text-align: left;
+  }
+
+  .pause-panel {
+    min-height: min(560px, calc(100vh - 28px));
+    padding: 32px 22px 26px;
+  }
+
+  .skill-buttons {
+    right: 12px;
+    bottom: 12px;
+    gap: 10px;
+  }
+
+  .skill-button {
+    width: 82px;
+    min-height: 92px;
+    padding: 6px 6px 8px;
+  }
+
+  .skill-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .skill-cooldown {
+    font-size: 10px;
+  }
+
+  .pause-title {
+    font-size: 18px;
+  }
+
+  .pause-action,
+  .pause-secondary {
+    min-height: 72px;
+    font-size: 20px;
+  }
+
+  .pause-copy {
+    font-size: 15px;
+  }
+}
+
+
+
+/* Unified combat HUD bars */
+.scene-chip-bar {
+  min-width: 216px;
+  padding: 8px 10px;
+  border: 2px solid #4a5568;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(34, 40, 56, 0.9) 0%, rgba(15, 19, 31, 0.92) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.chip-label {
+  display: inline-block;
+  width: fit-content;
+  margin: 0;
+  padding: 4px 10px;
+  border: 2px solid #183445;
+  border-radius: 2px;
+  background: #59def6;
+  color: #071725;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.scene-chip strong {
+  display: block;
+  margin-top: 8px;
+  color: #f1f6ff;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.meter {
+  position: relative;
+  overflow: hidden;
+  height: 12px;
+  margin-top: 8px;
+  border: 2px solid #0f1c29;
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(17, 24, 35, 0.98) 0%, rgba(8, 11, 18, 0.98) 100%);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.08);
+}
+
+.meter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 0 7px,
+    rgba(255, 255, 255, 0) 7px 14px
+  );
+}
+
+.meter-fill {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-right: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.meter-fill-life {
+  background: linear-gradient(90deg, #7a0f28 0%, #b81f45 52%, #e84a63 100%);
+}
+
+.meter-fill-energy {
+  background: linear-gradient(90deg, #0c2f80 0%, #1f56d1 56%, #2dc6f8 100%);
+}
+
+

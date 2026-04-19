@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dark Odyssey - Lobby</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../style/pause-menu.css">
+    <link rel="stylesheet" href="../style/device-guard.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <canvas id="gameCanvas"></canvas>
+        <button id="pause-button" class="canvas-menu-button canvas-menu-button-right" type="button" aria-label="Menu"></button>
+        <div id="pause-overlay" class="pause-overlay" hidden>
+            <div class="pause-backdrop"></div>
+            <section class="pause-panel" aria-label="Pause menu">
+                <div class="pause-ornament pause-ornament-top"></div>
+                <h2 class="pause-title">Dark Oddysey</h2>
+                <div id="pause-main" class="pause-main">
+                    <button id="pause-play" class="pause-action" type="button">play</button>
+                    <button id="pause-settings" class="pause-action" type="button">settings</button>
+                    <button id="pause-exit" class="pause-action" type="button">exit</button>
+                </div>
+                <div id="pause-settings-panel" class="pause-subpanel" hidden>
+                    <div class="knob-wrap">
+                        <button id="volume-knob" class="volume-knob" type="button" aria-label="Volume knob">
+                            <span class="volume-knob-face"></span>
+                            <span id="volume-knob-indicator" class="volume-knob-indicator"></span>
+                        </button>
+                        <p id="volume-label" class="pause-copy">volume 100%</p>
+                    </div>
+                    <button id="pause-settings-back" class="pause-secondary" type="button">back</button>
+                </div>
+                <div id="pause-exit-panel" class="pause-subpanel" hidden>
+                    <p class="pause-copy">Are you sure you want to exit? Progress will not be saved.</p>
+                    <div class="pause-confirm-row">
+                        <button id="pause-exit-confirm" class="pause-action" type="button">yes</button>
+                        <button id="pause-exit-cancel" class="pause-secondary" type="button">no</button>
+                    </div>
+                </div>
+                <div class="pause-ornament pause-ornament-bottom"></div>
+            </section>
+        </div>
+
+        <div class="lobby-banner" id="lobbyBanner" style="display: none;">
+            <div class="lobby-banner-title" id="lobbyBannerTitle">Level Up</div>
+            <div class="lobby-banner-text" id="lobbyBannerText"></div>
+        </div>
+
+        <div class="interaction-prompt" id="interactionPrompt" style="display: none;">
+            Press <strong>E</strong> to interact
+        </div>
+
+        <div class="dialogue-box" id="dialogueBox" style="display: none;">
+            <div class="dialogue-name" id="dialogueName"></div>
+            <div class="dialogue-text" id="dialogueText"></div>
+            <div class="dialogue-actions" id="dialogueActions" style="display: none;">
+                <button type="button" class="dialogue-button" id="dialogueYes">Yes</button>
+                <button type="button" class="dialogue-button dialogue-button-secondary" id="dialogueNo">No</button>
+            </div>
+            <div class="dialogue-hint">Press <strong>E</strong> or <strong>Esc</strong> to close</div>
+        </div>
+
+        <div class="stats-panel" id="statsPanel" style="display: none;">
+            <div class="stats-header">
+                <div class="stats-title">STATS</div>
+                <button type="button" class="stats-close" id="statsClose">X</button>
+            </div>
+
+            <div class="stats-list" id="statsList">
+                <div class="stat-row">
+                    <span class="stat-name stat-health">Health</span>
+                    <span class="stat-value" id="statValueHealth">Lv. 0 / 100</span>
+                    <button type="button" class="stat-add" data-stat="health">+</button>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-name stat-mana">Mana</span>
+                    <span class="stat-value" id="statValueMana">Lv. 0 / 100</span>
+                    <button type="button" class="stat-add" data-stat="mana">+</button>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-name stat-void">Void Cyclone</span>
+                    <span class="stat-value" id="statValueVoidCyclone">Lv. 0 / 100</span>
+                    <button type="button" class="stat-add" data-stat="voidCyclone">+</button>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-name stat-shadow">Shadow Strike</span>
+                    <span class="stat-value" id="statValueShadowStrike">Lv. 0 / 100</span>
+                    <button type="button" class="stat-add" data-stat="shadowStrike">+</button>
+                </div>
+            </div>
+
+            <div class="stats-footer">
+                <div class="stats-points">Available Points: <span id="availablePoints">0</span></div>
+                <button type="button" class="stats-reset" id="statsReset">Reset Stats</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/device-guard.js"></script>
+    <script src="../js/audio-manager.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

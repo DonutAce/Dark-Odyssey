@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Odyssey Loading</title>
+    <link rel="stylesheet" href="style/loading.css">
+    <link rel="stylesheet" href="style/device-guard.css">
+</head>
+<body>
+    <main class="loading-page">
+        <section class="loading-stage" aria-label="Loading into Dark Odyssey">
+            <div class="loading-overlay"></div>
+
+            <section class="loading-panel">
+                <span class="loading-kicker">DARK ODYSSEY</span>
+                <h1>Crossing The Veil</h1>
+                <p class="loading-copy">Preparing your path, your powers, and the world waiting behind the portal.</p>
+
+                <div class="loading-meter" aria-hidden="true">
+                    <span class="loading-meter-fill" id="loading-fill"></span>
+                </div>
+
+                <p class="loading-status" id="loading-status">Initializing the realm...</p>
+
+                <div class="controls-card">
+                    <span class="controls-kicker">How To Play</span>
+                    <div class="controls-grid">
+                        <div class="control-row"><strong>Q</strong><span>Shadow Strike skill</span></div>
+                        <div class="control-row"><strong>E</strong><span>Void Cyclone skill</span></div>
+                        <div class="control-row"><strong>Click</strong><span>Basic attack</span></div>
+                        <div class="control-row"><strong>A / D</strong><span>Walk left and right</span></div>
+                        <div class="control-row"><strong>Space</strong><span>Jump</span></div>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="js/device-guard.js"></script>
+    <script type="module" src="js/loading.js"></script>
+</body>
+</html>

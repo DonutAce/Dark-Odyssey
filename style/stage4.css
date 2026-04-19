@@ -1,0 +1,771 @@
+:root {
+  --bg-top: #140f2d;
+  --bg-mid: #26375b;
+  --bg-bottom: #8191ab;
+  --panel: rgba(13, 19, 28, 0.84);
+  --panel-edge: #182535;
+  --text-main: #f4fbff;
+  --text-dark: #0f1c29;
+  --text-muted: #456176;
+  --cyan: #59def6;
+  --amber: #ffce62;
+  --orange: #ff8a4a;
+  --danger: #ff6a6a;
+  --shadow: 0 20px 60px rgba(10, 20, 33, 0.18);
+}
+
+@font-face {
+  font-family: "SuperMarioNES";
+  src: url("../buttons/Super Mario Bros. NES.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Lucida Console", "Courier New", monospace;
+  color: var(--text-main);
+  background:
+    radial-gradient(circle at top, rgba(210, 136, 255, 0.2), transparent 28%),
+    linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 32%, var(--bg-bottom) 100%);
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.16) 0,
+      rgba(255, 255, 255, 0.16) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+.stage4-app {
+  width: min(1500px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 22px 0 40px;
+}
+
+.stage4-app {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.kicker,
+.card-kicker,
+.chip-label {
+  display: inline-block;
+  width: fit-content;
+  margin: 0;
+  padding: 4px 10px;
+  border: 2px solid #183445;
+  border-radius: 2px;
+  background: #59def6;
+  color: #071725;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 4.4rem);
+  line-height: 0.92;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 1rem;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  max-width: 72ch;
+  color: #d8e0f1;
+  line-height: 1.65;
+}
+
+.back-link {
+  padding: 12px 16px;
+  border: 2px solid #0f1c29;
+  background: #0f1c29;
+  color: var(--text-main);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+}
+
+.game-shell {
+  position: relative;
+  overflow: hidden;
+  border: 4px solid #0f1c29;
+  background: #111729;
+  box-shadow: var(--shadow);
+}
+
+.canvas-menu-button {
+  display: block;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 30;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  background: url("../buttons/Pixel Art Buttons.png") 0 -64px / 512px 320px no-repeat;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
+.skill-buttons {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 32;
+  display: flex;
+  gap: 14px;
+  pointer-events: none;
+}
+
+.skill-button {
+  width: 96px;
+  min-height: 108px;
+  padding: 8px 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.skill-icon {
+  width: 72px;
+  height: 72px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.35));
+}
+
+.skill-button[data-skill="q"] .skill-icon {
+  background-image: url("../buttons/q skill.png");
+}
+
+.skill-button[data-skill="e"] .skill-icon {
+  background-image: url("../buttons/e skill.png");
+}
+
+.skill-cooldown {
+  min-width: 72px;
+  min-height: 22px;
+  padding: 4px 6px;
+  border: 2px solid rgba(183, 190, 208, 0.72);
+  border-radius: 999px;
+  background: rgba(8, 11, 20, 0.82);
+  color: #97d8ff;
+  font-family: "SuperMarioNES", "Lucida Console", monospace;
+  font-size: 12px;
+  line-height: 1.2;
+  text-shadow: 1px 1px 0 #10131d;
+}
+
+.skill-button.is-cooling .skill-cooldown {
+  color: #ffd47d;
+}
+
+.canvas-menu-button:active {
+  transform: translateY(1px);
+  filter: brightness(0.92) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+}
+
+.game-shell-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border: 0;
+  box-shadow: none;
+}
+
+#stage4-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.game-shell-fullscreen #stage4-canvas {
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;
+}
+
+.scene-strip {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  z-index: 24;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.scene-chip,
+.loading-screen,
+.note-card {
+  border: 2px solid #0f1c29;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.06);
+}
+
+.scene-chip {
+  min-width: 140px;
+  padding: 8px 10px;
+  background: rgba(15, 28, 41, 0.82);
+  color: var(--text-main);
+}
+
+.scene-chip-bar {
+  min-width: 216px;
+  padding: 8px 10px;
+  border: 2px solid #4a5568;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(34, 40, 56, 0.9) 0%, rgba(15, 19, 31, 0.92) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.scene-chip-cooldowns {
+  min-width: 250px;
+}
+
+.scene-chip-difficulty {
+  min-width: 180px;
+  display: block;
+}
+
+.scene-chip strong {
+  display: block;
+  margin-top: 8px;
+  color: #f1f6ff;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+
+.meter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 0 7px,
+    rgba(255, 255, 255, 0) 7px 14px
+  );
+}
+.meter-fill {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-right: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.meter-fill-life {
+  background: linear-gradient(90deg, #7a0f28 0%, #b81f45 52%, #e84a63 100%);
+}
+
+.meter-fill-energy {
+  background: linear-gradient(90deg, #0c2f80 0%, #1f56d1 56%, #2dc6f8 100%);
+}
+
+.stage-dialogue-overlay {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 55;
+  width: min(740px, calc(100vw - 36px));
+  pointer-events: none;
+}
+
+.stage-dialogue-overlay[hidden] {
+  display: none;
+}
+
+.stage-dialogue-shell {
+  border: 1px solid rgba(203, 215, 255, 0.18);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(18, 24, 46, 0.94) 0%, rgba(8, 12, 24, 0.94) 100%);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.44);
+  backdrop-filter: blur(16px);
+  padding: 16px 20px 18px;
+}
+
+.stage-dialogue-speaker {
+  color: #f4ca52;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.stage-dialogue-text {
+  color: #f2efe7;
+  font-size: clamp(0.98rem, 1.75vw, 1.12rem);
+  line-height: 1.58;
+  min-height: 64px;
+  white-space: pre-line;
+}
+
+.boss-hud {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 34;
+  width: min(520px, calc(100vw - 140px));
+  text-align: center;
+}
+
+.boss-hud[hidden] {
+  display: none;
+}
+
+.boss-hud-bar {
+  height: 18px;
+  padding: 3px;
+  border: 1px solid rgba(203, 215, 255, 0.18);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(18, 24, 46, 0.94) 0%, rgba(8, 12, 24, 0.94) 100%);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.boss-hud-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #d6435d 0%, #ff9f62 100%);
+}
+
+.boss-hud-name {
+  margin-top: 8px;
+  color: #f2efe7;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: clamp(0.76rem, 1.35vw, 0.95rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}.difficulty-select {
+  width: 100%;
+  margin-top: 10px;
+  border: 2px solid #0f1c29;
+  background: #d9edf6;
+  color: #0f1c29;
+  font: inherit;
+  padding: 8px 10px;
+  text-transform: uppercase;
+}
+
+.loading-screen {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 2;
+  width: min(340px, calc(100% - 36px));
+  padding: 14px 16px;
+  background: rgba(15, 28, 41, 0.88);
+  color: var(--text-main);
+}
+
+.loading-screen[hidden] {
+  display: none;
+}
+
+.loading-kicker {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--amber);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.loading-screen strong {
+  display: block;
+  margin-bottom: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.loading-screen p {
+  color: #cfdfeb;
+  line-height: 1.55;
+  font-size: 0.82rem;
+}
+
+.pause-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.pause-overlay[hidden] {
+  display: none;
+}
+
+.pause-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.pause-panel {
+  position: relative;
+  z-index: 1;
+  width: min(420px, calc(100vw - 40px));
+  min-height: min(620px, calc(100vh - 40px));
+  padding: 44px 36px 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  border: 4px solid #5f6067;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(8, 8, 12, 0.96) 0%, rgba(2, 2, 4, 0.98) 100%);
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 2px rgba(175, 175, 175, 0.15);
+  overflow: hidden;
+}
+
+.pause-ornament {
+  display: none;
+}
+
+.pause-ornament-top {
+  margin-top: 20px;
+}
+
+.pause-ornament-bottom {
+  margin-top: auto;
+  transform: scaleY(-1);
+}
+
+.pause-title {
+  margin-top: 6px;
+  padding: 12px 24px;
+  border: 3px solid #717279;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #48484d 0%, #2e2e33 100%);
+  color: #f0f0f0;
+  font-family: "SuperMarioNES", "Lucida Console", monospace;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.2;
+  text-align: center;
+  text-shadow: 2px 2px 0 #131316;
+  letter-spacing: 0.04em;
+}
+
+.pause-main,
+.pause-subpanel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.pause-subpanel[hidden] {
+  display: none;
+}
+
+.pause-action,
+.pause-secondary {
+  position: relative;
+  width: min(250px, 100%);
+  min-height: 80px;
+  padding: 18px 20px;
+  border: 4px solid #76767d;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(74, 74, 79, 0.96) 0%, rgba(41, 41, 45, 0.98) 100%);
+  color: #f2f2f2;
+  font-family: "SuperMarioNES", "Lucida Console", monospace;
+  font-size: 24px;
+  line-height: 1;
+  text-transform: lowercase;
+  text-shadow: 2px 2px 0 #131316;
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition: transform 120ms ease, filter 120ms ease;
+}
+
+.pause-action:hover,
+.pause-secondary:hover,
+.pause-action:focus-visible,
+.pause-secondary:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  outline: none;
+}
+
+.pause-action:active,
+.pause-secondary:active {
+  transform: translateY(1px);
+  filter: brightness(0.95);
+}
+
+.pause-copy {
+  max-width: 270px;
+  color: #e6e6e8;
+  font-family: "SuperMarioNES", "Lucida Console", monospace;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  text-shadow: 2px 2px 0 #131316;
+}
+
+.pause-confirm-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.knob-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.volume-knob {
+  --knob-angle: 135deg;
+  position: relative;
+  width: 124px;
+  height: 124px;
+  border: 4px solid #75757c;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #72727a 0%, #4a4a50 35%, #232328 100%);
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 255, 255, 0.08),
+    0 12px 24px rgba(0, 0, 0, 0.35);
+  cursor: grab;
+}
+
+.volume-knob:active {
+  cursor: grabbing;
+}
+
+.volume-knob-face {
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  background: radial-gradient(circle at 30% 30%, #5d5d64 0%, #232328 74%);
+}
+
+.volume-knob-indicator {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 40px;
+  margin-left: -5px;
+  margin-top: -44px;
+  border-radius: 999px;
+  background: #ededee;
+  box-shadow: 0 0 0 2px #151518;
+  transform: rotate(var(--knob-angle));
+  transform-origin: 50% 48px;
+}
+
+.canvas-menu-button {
+  z-index: 60;
+}
+
+body.is-paused .canvas-menu-button {
+  filter: brightness(1.08) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35));
+}
+
+@media (max-width: 980px) {
+}
+
+@media (max-width: 720px) {
+  .stage4-app {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .loading-screen {
+    top: 10px;
+    right: 10px;
+  }
+
+  .pause-panel {
+    min-height: min(560px, calc(100vh - 28px));
+    padding: 32px 22px 26px;
+  }
+
+  .skill-buttons {
+    right: 12px;
+    bottom: 12px;
+    gap: 10px;
+  }
+
+  .skill-button {
+    width: 82px;
+    min-height: 92px;
+    padding: 6px 6px 8px;
+  }
+
+  .skill-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .skill-cooldown {
+    font-size: 10px;
+  }
+
+  .pause-title {
+    font-size: 18px;
+  }
+
+  .pause-action,
+  .pause-secondary {
+    min-height: 72px;
+    font-size: 20px;
+  }
+
+  .pause-copy {
+    font-size: 15px;
+  }
+}
+
+
+
+/* Unified combat HUD bars */
+.scene-chip-bar {
+  min-width: 216px;
+  padding: 8px 10px;
+  border: 2px solid #4a5568;
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgba(34, 40, 56, 0.9) 0%, rgba(15, 19, 31, 0.92) 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.chip-label {
+  display: inline-block;
+  width: fit-content;
+  margin: 0;
+  padding: 4px 10px;
+  border: 2px solid #183445;
+  border-radius: 2px;
+  background: #59def6;
+  color: #071725;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.scene-chip strong {
+  display: block;
+  margin-top: 8px;
+  color: #f1f6ff;
+  font-family: "SuperMarioNES", "Segoe UI", sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.meter {
+  position: relative;
+  overflow: hidden;
+  height: 12px;
+  margin-top: 8px;
+  border: 2px solid #0f1c29;
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(17, 24, 35, 0.98) 0%, rgba(8, 11, 18, 0.98) 100%);
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.08);
+}
+
+.meter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 0 7px,
+    rgba(255, 255, 255, 0) 7px 14px
+  );
+}
+
+.meter-fill {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-right: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.meter-fill-life {
+  background: linear-gradient(90deg, #7a0f28 0%, #b81f45 52%, #e84a63 100%);
+}
+
+.meter-fill-energy {
+  background: linear-gradient(90deg, #0c2f80 0%, #1f56d1 56%, #2dc6f8 100%);
+}
+
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage 4 - Forest Run</title>
+  <link rel="stylesheet" href="style/stage4.css">
+  <link rel="stylesheet" href="style/pause-menu.css">
+  <link rel="stylesheet" href="style/device-guard.css">
+</head>
+<body>
+  <main class="stage4-app">
+    <section class="game-shell game-shell-fullscreen" aria-label="Stage 4 forest map">
+      <button id="pause-button" class="canvas-menu-button canvas-menu-button-right" type="button" aria-label="Pause"></button>
+      <canvas id="stage4-canvas" width="1600" height="900" aria-label="Stage 4 forest stage"></canvas>
+      <section class="scene-strip" aria-label="Combat status">
+        <div class="scene-chip scene-chip-bar">
+          <span class="chip-label">Life</span>
+          <strong id="life-value">100 / 100</strong>
+          <div class="meter">
+            <div id="life-fill" class="meter-fill meter-fill-life"></div>
+          </div>
+        </div>
+        <div class="scene-chip scene-chip-bar">
+          <span class="chip-label">Mana</span>
+          <strong id="energy-value">100 / 100</strong>
+          <div class="meter">
+            <div id="energy-fill" class="meter-fill meter-fill-energy"></div>
+          </div>
+        </div>
+      </section>
+      <section id="boss-hud" class="boss-hud" aria-label="Boss status" hidden>
+        <div class="boss-hud-bar">
+          <div id="boss-hud-fill" class="boss-hud-fill"></div>
+        </div>
+        <div id="boss-hud-name" class="boss-hud-name">Boss</div>
+      </section>
+      <div id="boss-dialogue-overlay" class="stage-dialogue-overlay" hidden>
+        <section class="stage-dialogue-shell" aria-label="Boss dialogue">
+          <div id="boss-dialogue-speaker" class="stage-dialogue-speaker">Hallokin</div>
+          <div id="boss-dialogue-text" class="stage-dialogue-text"></div>
+        </section>
+      </div>
+      <div class="skill-buttons" aria-hidden="true">
+        <div id="skill-button-q" class="skill-button" data-skill="q">
+          <span class="skill-icon"></span>
+          <span id="skill-cooldown-q" class="skill-cooldown">Ready</span>
+        </div>
+        <div id="skill-button-e" class="skill-button" data-skill="e">
+          <span class="skill-icon"></span>
+          <span id="skill-cooldown-e" class="skill-cooldown">Ready</span>
+        </div>
+      </div>
+      <div id="pause-overlay" class="pause-overlay" hidden>
+        <div class="pause-backdrop"></div>
+        <section class="pause-panel" aria-label="Pause menu">
+          <div class="pause-ornament pause-ornament-top"></div>
+          <h2 class="pause-title">Dark Oddysey</h2>
+          <div id="pause-main" class="pause-main">
+            <button id="pause-play" class="pause-action" type="button">play</button>
+            <button id="pause-settings" class="pause-action" type="button">settings</button>
+            <button id="pause-exit" class="pause-action" type="button">exit</button>
+          </div>
+          <div id="pause-settings-panel" class="pause-subpanel" hidden>
+            <div class="knob-wrap">
+              <button id="volume-knob" class="volume-knob" type="button" aria-label="Volume knob">
+                <span class="volume-knob-face"></span>
+                <span id="volume-knob-indicator" class="volume-knob-indicator"></span>
+              </button>
+              <p id="volume-label" class="pause-copy">volume 100%</p>
+            </div>
+            <button id="pause-settings-back" class="pause-secondary" type="button">back</button>
+          </div>
+          <div id="pause-exit-panel" class="pause-subpanel" hidden>
+            <p class="pause-copy">Are you sure you want to exit? Progress will not be saved.</p>
+            <div class="pause-confirm-row">
+              <button id="pause-exit-confirm" class="pause-action" type="button">yes</button>
+              <button id="pause-exit-cancel" class="pause-secondary" type="button">no</button>
+            </div>
+          </div>
+          <div class="pause-ornament pause-ornament-bottom"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="loading-screen" class="loading-screen sr-only" aria-live="polite">
+    <span class="loading-kicker">Stage 4</span>
+    <strong>Loading forest route...</strong>
+    <p id="objective-text">Preparing the forest run and the final boss clearing.</p>
+  </div>
+  <script src="js/device-guard.js" defer></script>
+  <script src="js/audio-manager.js" defer></script>
+  <script src="js/stage4.js" defer></script>
+</body>
+</html>
